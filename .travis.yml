@@ -3,7 +3,7 @@ node_js:
    - 7
 
 before_install:
-  - sudo apt-get install --install-recommends winehq-stable
+  - sudo apt-get install wine
 
 before_script:
    - npm install -g @angular/cli
