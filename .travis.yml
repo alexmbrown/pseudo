@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+   - 7
+
+branches:
+   only:
+      - master
+
+before_script:
+   - npm install -g @angular/cli
+
+script:
+   - npm test
+#   - npm e2e
+   - npm run build
+
+provider: releases
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  file:
+      - smock-*-darwin-x64/smock-*.app
+      - smock-*-darwin-linux-ia32/smock*
+      - smock-*-darwin-win32-*/smock-*.exe
+  skip_cleanup: true
+  on:
+    tags: true

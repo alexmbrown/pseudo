@@ -1,0 +1,4 @@
+npmengines:
+  tslint:
+    enabled: true
+    channel: beta
