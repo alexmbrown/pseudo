@@ -16,10 +16,7 @@ deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   file_glob: true
-  file:
-      - smock-*-darwin-x64/smock-*.app
-      - smock-*-darwin-linux-ia32/smock*
-      - smock-*-darwin-win32-*/smock-*.exe
+  file: "/packages/smock-*/smock*"
   skip_cleanup: true
   on:
     tags: true
