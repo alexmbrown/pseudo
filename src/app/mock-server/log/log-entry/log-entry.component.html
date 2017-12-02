@@ -1,0 +1,16 @@
+<div class="timestamp">{{entry.timestamp | date: 'short'}}</div>
+<div>
+  <div class="method" [ngClass]="entry.req.method">{{getMethodAbbreviation(entry.req.method)}}</div>
+</div>
+<mat-expansion-panel class="flex-1">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <span class="indicator" [ngClass]="getStatusIndicator(entry.res.status)"></span>
+      <small class="muted status">{{entry.res.status}} {{entry.res.status | statusPipe}}</small>
+      <h3>{{entry.req.path}}</h3>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  {{entry | json}}
+  <h3>REQUEST</h3>
+  <h3>RESPONSE</h3>
+</mat-expansion-panel>

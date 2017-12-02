@@ -1,0 +1,14 @@
+<div class="clearfix">
+  <div class="pull-right">
+    <button mat-raised-button (click)="clearAll()" *ngIf="server?.getLogEntries().length > 0">
+      <mat-icon>clear_all</mat-icon> Clear All
+    </button>
+  </div>
+</div>
+<div *ngIf="server?.getLogEntries().length > 0">
+  <psd-log-entry *ngFor="let entry of server?.getLogEntries()" [entry]="entry"></psd-log-entry>
+</div>
+<mat-card class="text-center" *ngIf="server?.getLogEntries().length <= 0">
+  <h3>No Log Entries</h3>
+  <p class="muted">This mock contains no log entries yet.</p>
+</mat-card>

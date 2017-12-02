@@ -174,4 +174,8 @@ export class MockServer {
   public isStarting(): boolean {
     return this.starting;
   }
+
+  public clearLogs(): void {
+    this.logEntries = [];
+  }
 }

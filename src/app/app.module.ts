@@ -19,8 +19,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './header/header.component';
 import { EndpointComponent } from './mock-server/server-info/endpoint/endpoint.component';
-import { LogEntryComponent } from './mock-server/logs/log-entry/log-entry.component';
-import { LogsComponent } from './mock-server/logs/logs.component';
+import { LogEntryComponent } from './mock-server/log/log-entry/log-entry.component';
+import { LogComponent } from './mock-server/log/log.component';
 import { MockServerComponent } from './mock-server/mock-server.component';
 import { NewServerComponent } from './new-server/new-server.component';
 import { ServerTabComponent } from './side-nav/server-tab/server-tab.component';
@@ -35,7 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EndpointComponent,
     FilesComponent,
     HeaderComponent,
-    LogsComponent,
+    LogComponent,
     LogEntryComponent,
     MockServerComponent,
     NewServerComponent,
