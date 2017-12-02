@@ -1,0 +1,54 @@
+mat-card {
+  background: #424242;
+  margin-bottom: 1rem;
+  display: block;
+  padding: 0;
+}
+
+mat-card-title {
+  margin: 0;
+}
+
+mat-card-subtitle {
+  margin-left: 1rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin: 0;
+}
+
+.sbc-dark-theme mat-card {
+  background: none;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.06);
+  min-height: 3.25rem;
+  box-sizing: border-box;
+}
+
+section {
+  padding: 0.5rem 1rem;
+  display: block;
+}
+
+:host.table-panel {
+
+  section {
+    padding: 0;
+  }
+
+  /deep/ mat-row {
+    outline: none;
+
+    &:hover {
+      background: #303030;
+    }
+  }
+
+  /deep/ mat-row:last-child {
+    border-bottom: none;
+  }
+}

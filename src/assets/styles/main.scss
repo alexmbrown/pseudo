@@ -1,1 +1,127 @@
 @import 'theme';
+@import 'variables';
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  color: $text-primary;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  line-height: 1.5rem;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.flex-1 {
+  flex-grow: 1;
+}
+
+.space-between {
+  justify-content: space-between;
+
+  & > * {
+    width: auto;
+  }
+}
+
+.space-around {
+  justify-content: space-around;
+
+  & > * {
+    width: auto;
+  }
+}
+
+.center {
+  align-items: center;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.form-row {
+  @extend .flex;
+  align-items: center;
+
+  & > * {
+    flex-grow: 1;
+    margin: 0.5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+}
+
+.text-center {
+  text-align: center;
+}
+
+ul.unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mat-horizontal-stepper-content {
+  overflow: visible !important;
+}
+
+.muted {
+  opacity: 0.5;
+}
+
+.pull-right {
+  float: right;
+}
+
+textarea {
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  outline: none;
+  color: white;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.mat-input-infix.mat-form-field-infix {
+  z-index: 10;
+}

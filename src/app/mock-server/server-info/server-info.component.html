@@ -1,0 +1,24 @@
+<psd-panel title="Server Information">
+  <psd-panel-actions>
+    <button mat-button (click)="save()" *ngIf="form.dirty" [disabled]="form.invalid">SAVE</button>
+    <button mat-button (click)="delete()">DELETE</button>
+  </psd-panel-actions>
+  <psd-panel-content>
+    <psd-dynamic-form [form]="form" [data]="formData"></psd-dynamic-form>
+  </psd-panel-content>
+</psd-panel>
+<div class="flex center">
+  <h3>Endpoints</h3>
+  <div class="flex-1"></div>
+  <div>
+    <button mat-raised-button (click)="addEndpoint()">
+      <mat-icon>add</mat-icon>
+      Add Endpoint
+    </button>
+  </div>
+</div>
+<mat-card class="text-center" *ngIf="server?.getEndpoints().length === 0">
+  <h3>No Endpoints</h3>
+  <p class="muted">This mock contains no endpoints yet</p>
+</mat-card>
+<psd-endpoint *ngFor="let endpoint of server?.getEndpoints()" [endpoint]="endpoint"></psd-endpoint>

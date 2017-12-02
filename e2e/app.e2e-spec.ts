@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('smock App', () => {
+describe('Pseudo App', () => {
   let page: AppPage;
 
   beforeEach(() => {

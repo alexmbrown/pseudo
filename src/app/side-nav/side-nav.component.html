@@ -1,0 +1,6 @@
+<mat-toolbar>
+  <button mat-raised-button (click)="openCreateMockDialog()"><mat-icon>add</mat-icon>New Mock</button>
+</mat-toolbar>
+<nav>
+  <psd-server-tab *ngFor="let server of servers" [server]="server" [routerLink]="['server', server.id]" routerLinkActive="active"></psd-server-tab>
+</nav>

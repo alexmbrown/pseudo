@@ -1,2 +1,10 @@
-<mat-toolbar>Smock</mat-toolbar>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="sideNavOpen" (close)="sideNavClosed()">
+    <psd-side-nav [servers]="serverService.getServers()"></psd-side-nav>
+  </mat-sidenav>
+  <psd-header (toggleSideNav)="onSideNavToggle()"></psd-header>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>

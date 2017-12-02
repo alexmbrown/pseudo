@@ -1,0 +1,19 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.server-actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+mat-tab {
+  position: relative;
+}
+
+nav {
+  margin-bottom: 1rem;
+}

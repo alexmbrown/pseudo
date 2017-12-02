@@ -2,6 +2,20 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
+// boot strap server
+global.bootstrapServer = require('./bootstrap-server')
+
+// open file dialog
+const { dialog } = require('electron')
+global.openFileDialog =  dialog.showOpenDialog
+
+// copy file
+const fileUtils = require('./utils/file.util')
+global.copy = fileUtils.copy
+global.viewFiles = fileUtils.viewFiles
+global.deleteFile = fileUtils.deleteFile
+global.openFile = fileUtils.openFile
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;

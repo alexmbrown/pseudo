@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  outline: none;
+
+  &:hover, &.active {
+    background: rgba(0, 0, 0, .2);
+  }
+
+}
+
+strong {
+  margin-right: 0.5rem;
+}
+
+.indicator {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: rgba(255, 255, 255, .06);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+
+  &.running {
+    background: mediumseagreen;
+  }
+
+  &.error {
+    background: indianred;
+  }
+
+  &.starting {
+    background: goldenrod !important;
+  }
+}

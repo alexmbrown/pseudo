@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<form [formGroup]="parentForm" (submit)="submit()">
+  <mat-dialog-content>
+    <ng-container *ngIf="data.groups">
+      <ng-container *ngFor="let group of data.groups; let i = index">
+        <hr class="muted" *ngIf="i !== 0">
+        <h4>{{group.name}}</h4>
+        <psd-dynamic-form [form]="group.formGroup || parentForm" [data]="group.form" [values]="values"></psd-dynamic-form>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!data.groups">
+      <psd-dynamic-form [form]="parentForm" [data]="data.form" [values]="values"></psd-dynamic-form>
+    </ng-container>
+  </mat-dialog-content>
+  <mat-dialog-actions class="flex-end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button type="submit" mat-raised-button color="primary" [disabled]="parentForm.invalid || (data.update && parentForm.pristine)">
+      {{data.submitText || 'Submit'}}
+    </button>
+  </mat-dialog-actions>
+</form>

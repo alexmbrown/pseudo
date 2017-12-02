@@ -1,0 +1,64 @@
+<div class="clearfix">
+  <div class="pull-right">
+    <button mat-raised-button (click)="viewFiles()">View Files</button>
+    <button mat-raised-button (click)="openFileDialog()">
+      <mat-icon>create</mat-icon> Create File
+    </button>
+    <button mat-raised-button (click)="openFileDialog()">
+      <mat-icon>add</mat-icon> Import File
+    </button>
+  </div>
+</div>
+<div class="mat-elevation-z3" *ngIf="server.getFiles().length > 0">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- public -->
+    <ng-container matColumnDef="public">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Public </mat-header-cell>
+      <mat-cell *matCellDef="let element"> </mat-cell>
+    </ng-container>
+
+    <!-- path -->
+    <ng-container matColumnDef="path">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Path </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.path}} </mat-cell>
+    </ng-container>
+
+    <!-- name -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- extension -->
+    <ng-container matColumnDef="extension">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Extension </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.extension}} </mat-cell>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button class="hidden" (click)="openFile(element)">
+          <mat-icon aria-label="View File">pageview</mat-icon>
+        </button>
+        <button mat-icon-button class="hidden" (click)="editFile(element)">
+          <mat-icon aria-label="Edit File">edit</mat-icon>
+        </button>
+        <button mat-icon-button class="hidden" (click)="deleteFile(element)">
+          <mat-icon aria-label="Delete File">close</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<div *ngIf="server.getFiles().length <= 0">
+  <mat-card class="text-center" *ngIf="server?.getEndpoints().length === 0">
+    <h3>No File</h3>
+    <p class="muted">This mock contains no files yet</p>
+  </mat-card>
+</div>

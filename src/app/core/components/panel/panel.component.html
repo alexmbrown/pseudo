@@ -1,0 +1,11 @@
+<mat-card class="mat-elevation-z3">
+  <header>
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-subtitle>{{subTitle}}</mat-card-subtitle>
+    <span class="flex-1"></span>
+    <ng-content select="psd-panel-actions"></ng-content>
+  </header>
+  <section>
+    <ng-content select="psd-panel-content"></ng-content>
+  </section>
+</mat-card>

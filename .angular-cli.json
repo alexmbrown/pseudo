@@ -1,17 +1,17 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "smock"
+    "name": "pseudo"
   },
   "apps": [
     {
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets",
         "favicon.ico",
         "package.json",
-        "electron.prod.js"
+        "electron.prod.js",
+        { "glob": "**/*", "input": "../node_modules/ace-builds/src-min-noconflict", "output": "./" }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -19,11 +19,14 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "psd",
       "styles": [
         "assets/styles/main.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/socket.io-client/dist/socket.io.slim.js",
+        "../node_modules/ace-builds/src-min-noconflict/ace.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

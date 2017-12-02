@@ -1,0 +1,19 @@
+.clearfix {
+  margin-bottom: 1rem;
+}
+
+mat-header-row {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+mat-row:hover {
+
+  button {
+    visibility: visible;
+  }
+
+}
+
+mat-row:last-child {
+  border-bottom: none;
+}

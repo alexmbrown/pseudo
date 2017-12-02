@@ -1,9 +1,9 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$smock-app-primary: mat-palette($mat-teal);
-$smock-app-accent:  mat-palette($mat-pink, A200, A100, A400);
-$smock-app-warn:    mat-palette($mat-red);
+$pseudo-app-primary: mat-palette($mat-teal);
+$pseudo-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$pseudo-app-warn:    mat-palette($mat-red);
 
-$smock-app-theme: mat-dark-theme($smock-app-primary, $smock-app-accent, $smock-app-warn);
-@include angular-material-theme($smock-app-theme);
+$pseudo-app-theme: mat-dark-theme($pseudo-app-primary, $pseudo-app-accent, $pseudo-app-warn);
+@include angular-material-theme($pseudo-app-theme);

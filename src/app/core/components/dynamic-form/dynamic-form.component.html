@@ -1,0 +1,32 @@
+<div class="form-row" *ngFor="let row of data">
+  <ng-container *ngFor="let input of row">
+    <ng-container [ngSwitch]="input.type">
+      <ng-container *ngSwitchCase="'textarea'">
+        <div class="flex-col">
+          <label>{{input.placeholder}}</label>
+          <textarea placeholder="Enter text here" [formControl]="input.control"></textarea>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'select'">
+        <mat-form-field>
+          <mat-select [placeholder]="input.placeholder" [formControl]="input.control">
+            <mat-option *ngFor="let option of input.options" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <mat-form-field>
+          <input matInput [type]="input.type" [placeholder]="input.placeholder" [formControl]="input.control">
+          <mat-error *ngFor="let validation of input.validators">
+            <ng-container *ngIf="input.control.hasError(validation.type)">
+              {{validation.message}}
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+

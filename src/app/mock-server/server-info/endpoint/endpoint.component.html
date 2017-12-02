@@ -1,0 +1,39 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <div class="flex center">
+        <div class="indicator" [ngClass]="endpoint.method"></div>
+        <small class="method" [ngClass]="endpoint.method">{{endpoint.method}}</small>
+        <h3>{{endpoint.path}}</h3>
+      </div>
+    </mat-panel-title>
+    <mat-panel-description class="center flex-end" *ngIf="expansionPanel.expanded">
+      <button mat-button psdStopClick *ngIf="parentForm.dirty" [disabled]="parentForm.invalid" (click)="save()">SAVE</button>
+      <button mat-button psdStopClick (click)="delete()">DELETE</button>
+      <button mat-button [matMenuTriggerFor]="addMenu" psdStopClick>ADD</button>
+      <mat-menu #addMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="addRequestMenu">Request</button>
+        <button mat-menu-item [matMenuTriggerFor]="addResponseMenu">Response</button>
+      </mat-menu>
+      <mat-menu #addRequestMenu="matMenu">
+        <button mat-menu-item>Header</button>
+        <button mat-menu-item>Query Param</button>
+        <button mat-menu-item>Cookie</button>
+      </mat-menu>
+      <mat-menu #addResponseMenu="matMenu">
+        <button mat-menu-item>Header</button>
+        <button mat-menu-item>Query Param</button>
+        <button mat-menu-item>Cookie</button>
+      </mat-menu>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <h3>REQUEST</h3>
+  <psd-dynamic-form #request [form]="requestForm" [data]="endpointRequestFormData"></psd-dynamic-form>
+  <hr class="muted">
+  <h3>RESPONSE</h3>
+  <psd-dynamic-form #response [form]="responseForm" [data]="endpointResponseFormData"></psd-dynamic-form>
+  <ng-container *ngIf="language">
+    <small>Body</small>
+    <psd-code-editor *ngIf="language" [language]="language" [formControl]="body"></psd-code-editor>
+  </ng-container>
+</mat-expansion-panel>

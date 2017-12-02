@@ -1,0 +1,21 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link routerLink="info" routerLinkActive #infoTab="routerLinkActive" [active]="infoTab.isActive">Server Info</a>
+  <a mat-tab-link routerLink="files" routerLinkActive #filesTab="routerLinkActive" [active]="filesTab.isActive">Files</a>
+  <a mat-tab-link routerLink="logs" routerLinkActive #logsTab="routerLinkActive" [active]="logsTab.isActive">Logs</a>
+</nav>
+
+<article>
+  <router-outlet></router-outlet>
+</article>
+
+<div class="server-actions" *ngIf="server">
+  <button mat-raised-button (click)="startServer()" *ngIf="!(server.isConnected() | async)">
+    <mat-icon>play_arrow</mat-icon>Start
+  </button>
+  <button mat-raised-button (click)="stopServer()" *ngIf="server.isConnected() | async">
+    <mat-icon>stop</mat-icon>Stop
+  </button>
+  <button mat-raised-button (click)="restartServer()" *ngIf="server.isConnected() | async">
+    <mat-icon>refresh</mat-icon>Restart
+  </button>
+</div>
