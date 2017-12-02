@@ -4,8 +4,7 @@ import { MockServer } from '../../common/models/mock-server.model';
 import { ServerService } from '../../core/services/server.service';
 
 @Component({
-  templateUrl: './log.component.html',
-  styleUrls: ['./log.component.scss']
+  templateUrl: './log.component.html'
 })
 export class LogComponent implements OnInit {
 
