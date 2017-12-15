@@ -69,7 +69,7 @@ export class ServerInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.serverService.deleteServer(this.server.id);
+        this.serverService.deleteServer(this.server);
         const servers: MockServer[] = this.serverService.getServers();
         if (servers.length > 0) {
           this.router.navigate(['server', servers[0].id]);

@@ -209,5 +209,4 @@ export class MockServer {
   public onDependenciesChange(): Observable<Dependency[]> {
     return this.dependenciesSubject;
   }
-
 }

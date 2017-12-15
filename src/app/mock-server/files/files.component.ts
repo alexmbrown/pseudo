@@ -22,9 +22,9 @@ import { ServerService } from '../../core/services/server.service';
 const remote = (window as any).require('electron').remote;
 const openFileDialog: Function = remote.getGlobal('openFileDialog');
 const copy: Function = remote.getGlobal('copy');
-const viewFiles: Function = remote.getGlobal('viewFiles');
+const viewFiles: Function = remote.getGlobal('view');
 const deleteFile: Function = remote.getGlobal('deleteFile');
-const openFile: Function = remote.getGlobal('openFile');
+const open: Function = remote.getGlobal('open');
 
 function sortFiles(publicPath: string, change: {active: string, direction: string}) {
   if (change.active && change.direction) {
@@ -216,7 +216,7 @@ export class FilesComponent implements OnInit, AfterViewInit {
   }
 
   public openFile(file: File) {
-    openFile(this.server.id, file.id, file.extension);
+    open(this.server.id, file.id, file.extension);
   }
 
 }

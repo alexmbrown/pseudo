@@ -28,7 +28,7 @@ describe('File Util', () => {
       const serverId = 'mock_server_id'
       const fileId = 'mock_file_id'
       const filePath = 'mock/file/path.txt'
-      fileUtil.copyFile(serverId, fileId, filePath, () => {
+      fileUtil.copy(serverId, fileId, filePath, () => {
         done()
       })
       expect(rewires.path.join).toHaveBeenCalledWith('/mock/user/data/path', 'pseudo', serverId)
@@ -43,7 +43,7 @@ describe('File Util', () => {
 
     it('should log and return error when fs.ensureDir fails', done => {
       const error = new Error('mock error')
-      fileUtil.copyFile('', '', '', err => {
+      fileUtil.copy('', '', '', err => {
         expect(rewires.console.error).toHaveBeenCalledWith('Error creating directory', error)
         expect(error, err)
         done()

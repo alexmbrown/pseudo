@@ -7,6 +7,7 @@ import { LocalStorageService } from './local-storage.service';
 const remote = (window as any).require('electron').remote;
 const bootstrapServer: any = remote.getGlobal('bootstrapServer');
 const ensureDirectory: any = remote.getGlobal('ensureDirectory');
+const deleteDir: any = remote.getGlobal('deleteDir');
 
 const STORAGE_KEY = 'server_info';
 
@@ -32,12 +33,21 @@ export class ServerService {
     return server;
   }
 
-  public deleteServer(id: string): void {
+  // remove server from config
+  public removeServer(id: string): void {
     const index = this.servers.findIndex((server: MockServer) => server.id === id);
     if (index >= 0) {
       this.servers.splice(index, 1);
     }
     this.storeServers();
+  }
+
+  public deleteServer(server: MockServer): void {
+    this.stopServer(server);
+    this.removeServer(server.id);
+    deleteDir(server.id, err => {
+      console.log(err);
+    });
   }
 
   public getServer(id: string): MockServer {
@@ -53,7 +63,7 @@ export class ServerService {
   }
 
   public update(server: MockServer) {
-    this.deleteServer(server.id);
+    this.removeServer(server.id);
     this.servers.push(server);
     this.storeServers();
   }

@@ -17,9 +17,10 @@ global.openFileDialog = dialog.showOpenDialog
 // copy file
 const fileUtils = require('./utils/file.util')
 global.copy = fileUtils.copy
-global.viewFiles = fileUtils.viewFiles
+global.view = fileUtils.view
 global.deleteFile = fileUtils.deleteFile
-global.openFile = fileUtils.openFile
+global.deleteDir = fileUtils.deleteDir
+global.open = fileUtils.open
 global.ensureDirectory = fileUtils.ensureDirectory
 
 // npm & shell

@@ -9,7 +9,7 @@ function getUserDataPath () {
 
 module.exports = {
 
-  copyFile: function fileUtilCopyFile (serverId, id, file, cb) {
+  copy: function fileUtilCopyFile (serverId, id, file, cb) {
     const dir = path.join(getUserDataPath(), 'pseudo', serverId)
     const ext = path.extname(file)
     const fileName = path.basename(file)
@@ -28,6 +28,11 @@ module.exports = {
     fs.remove(filePath, cb)
   },
 
+  deleteDir: function fileUtilDeleteFile (serverId, cb) {
+    const filePath = path.join(getUserDataPath(), 'pseudo', serverId)
+    fs.remove(filePath, cb)
+  },
+
   getPath: (serverId, ...path) => {
     if (path) {
       return [getUserDataPath(), 'pseudo', serverId, ...path].join('/')
@@ -36,7 +41,7 @@ module.exports = {
     }
   },
 
-  viewFiles: function fileUtilViewFiles (serverId, cb) {
+  view: function fileUtilViewFiles (serverId, cb) {
     const dir = path.join(getUserDataPath(), 'pseudo', serverId)
     fs.ensureDir(dir, err => {
       if (err) {
@@ -48,11 +53,11 @@ module.exports = {
     })
   },
 
-  openFile: function fileUtilOpenFile (serverId, fileId, extension) {
+  open: function fileUtilOpenFile (serverId, fileId, extension) {
     shell.openItem(path.join(getUserDataPath(), 'pseudo', serverId, fileId + '.' + extension))
   },
 
-  readFile: function fileUtilReadFile (path) {
+  read: function fileUtilReadFile (path) {
     fs.readFileSync(path, 'utf8')
   },
 
