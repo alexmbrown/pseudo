@@ -63,7 +63,7 @@ export class FilesDataSource extends DataSource<File> {
       .map((change: any) => {
         return this.server.getFiles()
           .sort((l: File, r: File) => l.path.localeCompare(r.path))
-          .sort(sortFiles(this.server.publicPath, change))
+          .sort(sortFiles(this.server.publicPath, change));
       });
   }
 

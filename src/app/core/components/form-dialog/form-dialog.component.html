@@ -9,7 +9,7 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="!data.groups">
-      <psd-dynamic-form [form]="parentForm" [data]="data.form" [values]="values"></psd-dynamic-form>
+      <psd-dynamic-form [form]="parentForm" [data]="data.form" [values]="values" [changes]="changeSubjects"></psd-dynamic-form>
     </ng-container>
   </mat-dialog-content>
   <mat-dialog-actions class="flex-end">
@@ -20,3 +20,4 @@
     </button>
   </mat-dialog-actions>
 </form>
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>

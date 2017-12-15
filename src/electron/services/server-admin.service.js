@@ -5,14 +5,14 @@ const cookieParser = require('cookie-parser')
 const configService = require('./config.service')
 
 const app = express()
-const http = require('http').Server(app);
+const http = require('http').Server(app)
 
-let server;
-const io = require('socket.io')(http);
+let server
+const io = require('socket.io')(http)
 
 module.exports = {
 
-  init: function serverAdminServiceInit() {
+  init: function serverAdminServiceInit () {
     app.use(cors())
     app.use(bodyParser.json())
     app.use(cookieParser())
@@ -25,13 +25,13 @@ module.exports = {
     io.on('connection', socket => {
       socket.on('config update', config => {
         configService.storeConfig(config)
-      });
+      })
 
       socket.on('server stop', () => {
-        server.close();
-        process.exit();
-      });
-    });
+        server.close()
+        process.exit()
+      })
+    })
   },
 
   attachMiddleware: function serverAdminServiceAttachMiddleware (arg1, arg2) {
@@ -56,7 +56,7 @@ module.exports = {
         successful: false,
         error: error.message,
         stackTrace: error.stack
-      });
+      })
     }
   },
 

@@ -1,7 +1,6 @@
 'use strict'
 
-const {app, remote, BrowserWindow} = require('electron')
-const path = require('path')
+const {app, BrowserWindow} = require('electron')
 const url = require('url')
 
 // require('electron-reload')(__dirname, {
@@ -13,7 +12,7 @@ global.bootstrapServer = require('./bootstrap-server')
 
 // open file dialog
 const { dialog } = require('electron')
-global.openFileDialog =  dialog.showOpenDialog
+global.openFileDialog = dialog.showOpenDialog
 
 // copy file
 const fileUtils = require('./utils/file.util')
@@ -21,6 +20,12 @@ global.copy = fileUtils.copy
 global.viewFiles = fileUtils.viewFiles
 global.deleteFile = fileUtils.deleteFile
 global.openFile = fileUtils.openFile
+global.ensureDirectory = fileUtils.ensureDirectory
+
+// npm & shell
+global.shell = require('shelljs')
+global.getFilePath = fileUtils.getPath
+global.readFile = fileUtils.readFile
 
 let win
 
@@ -29,7 +34,7 @@ const createWindow = () => {
     win = new BrowserWindow({
       width: 800,
       height: 600,
-      icon: './src/favicon.ico',
+      icon: './src/favicon.ico'
       // webPreferences: {
       //   devTools: false
       // }

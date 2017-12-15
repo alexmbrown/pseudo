@@ -21,7 +21,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "psd",
       "styles": [
-        "assets/styles/main.scss"
+        "assets/styles/main.scss",
+        "../node_modules/material-design-icons/iconfont/material-icons.css"
       ],
       "scripts": [
         "../node_modules/socket.io-client/dist/socket.io.slim.js",

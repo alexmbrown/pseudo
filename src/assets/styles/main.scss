@@ -126,3 +126,7 @@ textarea {
 .mat-input-infix.mat-form-field-infix {
   z-index: 10;
 }
+
+mat-dialog-container {
+  position: relative;
+}

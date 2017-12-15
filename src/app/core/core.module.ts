@@ -21,6 +21,7 @@ import { StatusPipe } from './pipes/status.pipe';
 import { LocalStorageService } from './services/local-storage.service';
 import { ServerService } from './services/server.service';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { DependencyService } from './services/dependency.service';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CodeEditorComponent } from './components/code-editor/code-editor.compon
     MatSelectModule
   ],
   providers: [
+    DependencyService,
     LocalStorageService,
     ServerService
   ]

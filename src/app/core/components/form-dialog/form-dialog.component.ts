@@ -2,6 +2,9 @@ import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angula
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { SelectOption } from '../../../common/interfaces/dynamic-form-data';
 
 @Component({
   templateUrl: './form-dialog.component.html',
@@ -14,6 +17,8 @@ export class FormDialogComponent implements OnInit {
 
   public parentForm: FormGroup;
   public values: {[key: string]: any} = {};
+  public changeSubjects: {[key: string]: Subject<any>} = {};
+  public loading = false;
 
   constructor(
     public dialog: MatDialogRef<FormDialogComponent>,
@@ -40,7 +45,20 @@ export class FormDialogComponent implements OnInit {
   }
 
   public setValue(key: string, value: any): void {
+    if (this.dynamicForm) {
+      this.dynamicForm.setValue(key, value);
+    }
     this.values[key] = value;
+  }
+
+  public onChange(key: string): Observable<any> {
+    const subject = new Subject();
+    this.changeSubjects[key] = subject;
+    return subject;
+  }
+
+  public setOptions(key: string, options: SelectOption[]) {
+    this.dynamicForm.setOptions(key, options);
   }
 
 }

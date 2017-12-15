@@ -6,6 +6,7 @@ import { LocalStorageService } from './local-storage.service';
 
 const remote = (window as any).require('electron').remote;
 const bootstrapServer: any = remote.getGlobal('bootstrapServer');
+const ensureDirectory: any = remote.getGlobal('ensureDirectory');
 
 const STORAGE_KEY = 'server_info';
 
@@ -25,6 +26,7 @@ export class ServerService {
 
   public addServer(data: any): MockServer {
     const server: MockServer = new MockServer(data);
+    ensureDirectory(server.id);
     this.servers.push(server);
     this.storeServers();
     return server;

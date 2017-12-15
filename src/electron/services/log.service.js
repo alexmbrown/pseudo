@@ -1,6 +1,6 @@
 const server = require('./server-admin.service')
 
-function mapRequest(req) {
+function mapRequest (req) {
   return {
     path: req.path,
     headers: req.header,
@@ -11,10 +11,10 @@ function mapRequest(req) {
   }
 }
 
-function mapResponse(res, resBody) {
-  return  {
+function mapResponse (res, resBody) {
+  return {
     body: resBody,
-    status: res.statusCode,
+    status: res.statusCode
   }
 }
 
@@ -28,10 +28,6 @@ module.exports = {
         res: mapResponse(res, resBody)
       })
     }
-  },
-
-  clear: function logServiceClear () {
-    entries = []
   }
 
 }

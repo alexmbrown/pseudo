@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class StatusPipe implements PipeTransform {
 
   public transform(status: number): string {
-    switch(status) {
+    switch (status) {
       case 100: return 'CONTINUE';
       case 101: return 'SWITCHING PROTOCOLS';
       case 102: return 'PROCESSING';

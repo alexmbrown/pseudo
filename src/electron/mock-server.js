@@ -25,7 +25,7 @@ server.attachMiddleware('/__pseudo__/', router)
 const loggingService = require('./services/log.service')
 server.attachMiddleware((req, res) => {
   if (!req.matched) {
-    res.sendStatus(404);
+    res.sendStatus(404)
     loggingService.emitEntry(req, res)
   }
 })

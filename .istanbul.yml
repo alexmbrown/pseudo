@@ -1,0 +1,10 @@
+instrumentation:
+  includeAllSources: true
+  default-excludes: true
+  excludes: [
+    '**/*.spec.js'
+  ]
+reporting:
+    dir: ./coverage/electron
+    reports:
+        - json

@@ -1,45 +1,64 @@
-const path = require('path')
-const {app, remote, shell} = require('electron')
-const userDataPath = (app || remote.app).getPath('userData')
-const fs = require('fs-extra')
+let console = require('console')
+let path = require('path')
+let {app, remote, shell} = require('electron')
+let fs = require('fs-extra')
+
+function getUserDataPath () {
+  return (app || remote.app).getPath('userData')
+}
 
 module.exports = {
 
-  copy: (serverId, id, file, cb) => {
-    const dir = path.join(userDataPath, 'pseudo', serverId)
+  copyFile: function fileUtilCopyFile (serverId, id, file, cb) {
+    const dir = path.join(getUserDataPath(), 'pseudo', serverId)
     const ext = path.extname(file)
     const fileName = path.basename(file)
     fs.ensureDir(dir, err => {
       if (err) {
         console.error('Error creating directory', err)
-        cb(err);
+        cb(err)
       } else {
         fs.copy(file, path.join(dir, id + ext), err => cb(err, fileName))
       }
     })
   },
 
-  deleteFile: (serverId, fileId, extension, cb) => {
-    const filePath = path.join(userDataPath, 'pseudo', serverId, fileId + '.' + extension)
+  deleteFile: function fileUtilDeleteFile (serverId, fileId, extension, cb) {
+    const filePath = path.join(getUserDataPath(), 'pseudo', serverId, fileId + '.' + extension)
     fs.remove(filePath, cb)
   },
 
-  getPath: serverId => path.join(userDataPath, 'pseudo', serverId),
+  getPath: (serverId, ...path) => {
+    if (path) {
+      return [getUserDataPath(), 'pseudo', serverId, ...path].join('/')
+    } else {
+      return path.join(getUserDataPath(), 'pseudo', serverId)
+    }
+  },
 
-  viewFiles: serverId => {
-    const dir = path.join(userDataPath, 'pseudo', serverId)
+  viewFiles: function fileUtilViewFiles (serverId, cb) {
+    const dir = path.join(getUserDataPath(), 'pseudo', serverId)
     fs.ensureDir(dir, err => {
       if (err) {
         console.error('Error creating directory', err)
-        cb(err);
+        cb(err)
       } else {
         shell.showItemInFolder(dir)
       }
     })
   },
 
-  openFile: (serverId, fileId, extension) => {
-    shell.openItem(path.join(userDataPath, 'pseudo', serverId, fileId + '.' + extension))
+  openFile: function fileUtilOpenFile (serverId, fileId, extension) {
+    shell.openItem(path.join(getUserDataPath(), 'pseudo', serverId, fileId + '.' + extension))
+  },
+
+  readFile: function fileUtilReadFile (path) {
+    fs.readFileSync(path, 'utf8')
+  },
+
+  ensureDirectory: function fileUtilEnsureDirectory (serverId, cb) {
+    const dir = path.join(getUserDataPath(), 'pseudo', serverId)
+    fs.ensureDir(dir, cb)
   }
 
 }

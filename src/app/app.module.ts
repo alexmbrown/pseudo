@@ -28,10 +28,12 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { FilesComponent } from './mock-server/files/files.component';
 import { ServerInfoComponent } from './mock-server/server-info/server-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DependenciesComponent } from './mock-server/dependencies/dependencies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DependenciesComponent,
     EndpointComponent,
     FilesComponent,
     HeaderComponent,

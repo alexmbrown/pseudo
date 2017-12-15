@@ -1,0 +1,46 @@
+<div class="clearfix">
+  <div class="pull-right">
+    <button mat-raised-button (click)="addDependency()">
+      <mat-icon>add</mat-icon> Add Dependency
+    </button>
+  </div>
+</div>
+<div class="mat-elevation-z3" *ngIf="server.getDependencies().length > 0">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- name -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Module Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- version -->
+    <ng-container matColumnDef="version">
+      <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.version}} </mat-cell>
+    </ng-container>
+
+    <!-- extension -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button class="hidden" (click)="deleteDependency(element)">
+          <mat-icon aria-label="Delete File">close</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<mat-card class="text-center" *ngIf="server.getDependencies().length <= 0">
+  <h3>No Dependencies</h3>
+  <p class="muted">This mock contains no dependencies yet</p>
+</mat-card>

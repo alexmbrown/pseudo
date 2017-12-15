@@ -9,7 +9,7 @@
       </ng-container>
       <ng-container *ngSwitchCase="'select'">
         <mat-form-field>
-          <mat-select [placeholder]="input.placeholder" [formControl]="input.control">
+          <mat-select [placeholder]="input.placeholder" [formControl]="input.control" [disabled]="!input.options || input.options.length === 0">
             <mat-option *ngFor="let option of input.options" [value]="option.value">
               {{ option.label }}
             </mat-option>

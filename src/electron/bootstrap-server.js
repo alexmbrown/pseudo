@@ -3,25 +3,22 @@ const fileUtils = require('./utils/file.util')
 
 module.exports = (serverId, port, cb) => {
   try {
-    const child = fork('src/electron/mock-server.js', [], {
+    const child = fork('./src/electron/mock-server.js', [], {
       env: {
         PORT: port,
         FILE_LOCATION: fileUtils.getPath(serverId)
       }
-    });
+    })
 
     child.on('message', function (msg) {
       if (msg.successful) {
         cb(null, true)
       } else {
-        cb({
-          error: msg.error,
-          stackTrace: msg.stackTrace
-        }, false)
+        cb(msg.error, false)
       }
     })
   } catch (err) {
     console.log('ERROR CAUGHT')
-    cb(err, false);
+    cb(err, false)
   }
 }

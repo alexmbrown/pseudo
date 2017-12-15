@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { LogEntry } from '../interfaces/log-entry';
 import { Subject } from 'rxjs/Subject';
 import { File } from '../interfaces/file';
+import { Dependency } from '../interfaces/dependency';
 
 declare const io: any;
 
@@ -12,6 +13,7 @@ export class MockServer {
 
   private logEvent: Subject<void> = new Subject<void>();
   private filesSubject: BehaviorSubject<File[]> = new BehaviorSubject<File[]>(null);
+  private dependenciesSubject: BehaviorSubject<Dependency[]> = new BehaviorSubject<Dependency[]>(null);
 
   private socket;
   private connected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -23,6 +25,7 @@ export class MockServer {
   private endpoints: Endpoint[] = [];
   private logEntries: LogEntry[] = [];
   private files: File[] = [];
+  private dependencies: Dependency[] = [];
 
   private starting = false;
 
@@ -43,6 +46,11 @@ export class MockServer {
     if (obj.files && Array.isArray(obj.files)) {
       this.files = obj.files;
       this.filesSubject.next(this.files);
+    }
+
+    if (obj.dependencies && Array.isArray(obj.dependencies)) {
+      this.dependencies = obj.dependencies;
+      this.dependenciesSubject.next(this.dependencies);
     }
 
     this.socket = io(`http://localhost:${this.port}`);
@@ -102,7 +110,8 @@ export class MockServer {
         };
       }),
       logEntries: this.logEntries,
-      files: this.files
+      files: this.files,
+      dependencies: this.dependencies
     };
   }
 
@@ -178,4 +187,27 @@ export class MockServer {
   public clearLogs(): void {
     this.logEntries = [];
   }
+
+  public addDependency(dependency: Dependency): void {
+    this.dependencies.push(dependency);
+    this.dependenciesSubject.next(this.dependencies);
+    this.pushConfig();
+  }
+
+  public removeDependency(name: string): void {
+    const index = this.dependencies.findIndex((dependency: Dependency) => dependency.name === name);
+    if (index >= 0) {
+      this.endpoints.splice(index, 1);
+      this.pushConfig();
+    }
+  }
+
+  public getDependencies(): Dependency[] {
+    return this.dependencies.sort((l: Dependency, r: Dependency) => l.name.localeCompare(r.name));
+  }
+
+  public onDependenciesChange(): Observable<Dependency[]> {
+    return this.dependenciesSubject;
+  }
+
 }

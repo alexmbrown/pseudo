@@ -1,0 +1,7 @@
+{
+  "spec_dir": "src/electron",
+  "spec_files": [
+    "**/*.spec.js",
+    "test-coverage.js"
+  ]
+}
