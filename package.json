@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "codecov": "./node_modules/.bin/codecov",
     "coverage": "npm run coverage:client && npm run coverage:electron",
     "coverage:client": "ng test --cc --single-run",
     "coverage:electron": "istanbul cover jasmine JASMINE_CONFIG_PATH=jasmine.json",
@@ -66,6 +67,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "angular2-template-loader": "^0.6.2",
+    "codecov": "^3.0.0",
     "codelyzer": "~3.1.1",
     "concurrently": "^3.5.0",
     "electron-packager": "^9.1.0",
