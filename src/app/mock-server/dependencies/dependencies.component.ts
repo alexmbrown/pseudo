@@ -77,10 +77,10 @@ export class DependenciesComponent implements OnInit, AfterViewInit {
 
     let packageCache;
     dialogRef.componentInstance.onChange('name')
+    .do(() => dialogRef.componentInstance.setOptions('version', []))
     .debounce(() => Observable.timer(500))
     .subscribe(value => {
       dialogRef.componentInstance.loading = true;
-      dialogRef.componentInstance.setOptions('version', []);
       this.dependencyService.getPackage(value).subscribe(packageData => {
         packageCache = packageData;
         const versions = packageData.versions;
